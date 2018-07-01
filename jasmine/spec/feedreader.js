@@ -31,6 +31,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+        // Determines if allFeeds have Urls and that the name is not empty 
         it ('Have Urls',function(){
             for (var i=0; i<allFeeds.length;i++){
                 expect(allFeeds[i].url).toBeDefined();
@@ -43,6 +44,7 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        // Determines if allFeeds have names and that the name is not empty 
         it ('Have Names',function(){
             for (var i=0; i<allFeeds.length;i++){
                 expect(allFeeds[i].name).toBeDefined();
@@ -61,6 +63,7 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        
         it ('Element is hidden by default',function(){
             expect($('body').hasClass('menu-hidden')).toBe(true);
         });
@@ -71,6 +74,7 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        // Toggles on click event if the menu appears or disappears
         it('Changes visibility when the menu icon is clicked',function(){
             $('.menu-icon-link').trigger('click');
                 expect($('body').hasClass('menu-hidden')).toBe(false);
@@ -91,13 +95,15 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-
+        // Calls a function to do an asynchronous request
         beforeEach(function(done){
             loadFeed(0,function(){
                 done();
             });        
         });
 
+        // Tests if the loadFeed function has at least a single '.entry' within
+        // the '.feed' container
         it ('there is at least a single .entry element within the .feed container.',function(done){
             expect($('body').hasClass('feed entry')).toBeDefined();
             done();
@@ -110,7 +116,10 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-
+        // var used  
+        var startSelection , EndSelection;
+        
+        // Ensures that the new feed is loaded via the loadFeed function
         beforeEach(function(done){
             loadFeed(0,function(){
                 startSelection = $('.feed').find(allFeeds.url);
@@ -123,6 +132,7 @@ $(function() {
             });
         });
 
+        // Tests to see if two entries are not equal
         it('Their is a differnce between this feed and the previous one ',function(done){
             expect(startSelection).not.toBe(EndSelection);
             done();
