@@ -114,7 +114,7 @@ $(function() {
         beforeEach(function(done){
             loadFeed(0,function(){
                 startSelection = $('.feed').find(allFeeds.url);
-                done();
+                 done();
             });
             
             loadFeed(1,function(){
